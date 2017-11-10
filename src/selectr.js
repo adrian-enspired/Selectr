@@ -1149,9 +1149,9 @@
         }
 
         // Non-native dropdown
-        this.selected.addEventListener("click", function(e) {
+        this.selected.addEventListener("click", function(e) {console.log("toggle", e);
 
-            if (!that.disabled) {
+            if (!that.disabled) {console.log('toggled');
                 that.toggle();
             }
 
@@ -1229,8 +1229,8 @@
         }
 
         // Remove tag
-        this.label.addEventListener("click", function(e) {
-            if (util.hasClass(e.target, "selectr-tag-remove")) {
+        this.label.addEventListener("click", function(e) {console.log('remove', e);
+            if (util.hasClass(e.target, "selectr-tag-remove")) {console.log('removed', 'active:', document.activeElement.parentElement);
                 that.deselect(e.target.parentNode.idx);
             }
         });
@@ -1246,22 +1246,22 @@
         });
 
         // Select / deselect items
-        this.tree.addEventListener("click", function(e) {
+        this.tree.addEventListener("click", function(e) {console.log('select', e);
             var item = util.closest(e.target, function(el) {
                 return el && util.hasClass(el, "selectr-option");
             });
 
-            if (item) {
-                if (!util.hasClass(item, "disabled")) {
-                    if (util.hasClass(item, "selected")) {
-                        if (that.el.multiple || !that.el.multiple && that.config.allowDeselect) {
+            if (item) {console.log('item');
+                if (!util.hasClass(item, "disabled")) {console.log('!disabled');
+                    if (util.hasClass(item, "selected")) {console.log('selected');
+                        if (that.el.multiple || !that.el.multiple && that.config.allowDeselect) {console.log('deselected');
                             that.deselect(item.idx);
                         }
-                    } else {
+                    } else {console.log('selected');
                         that.select(item.idx);
                     }
 
-                    if (that.opened && !that.el.multiple) {
+                    if (that.opened && !that.el.multiple) {console.log('closed');
                         that.close();
                     }
                 }
@@ -1307,11 +1307,11 @@
             });
 
             // Clear the search input
-            this.inputClear.addEventListener("click", function(e) {
+            this.inputClear.addEventListener("click", function(e) {console.log('clear', e);
                 that.input.value = null;
                 clearSearch.call(that);
 
-                if (!that.tree.childElementCount) {
+                if (!that.tree.childElementCount) {console.log('re-rendered');
                     render.call(that);
                 }
             });
