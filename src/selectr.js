@@ -1266,10 +1266,12 @@
                         that.close();
                     }
                 }
-            }
-
             e.preventDefault();
             e.stopPropagation();
+            }
+
+            //e.preventDefault();
+            //e.stopPropagation();
         });
 
         // Mouseover list items
