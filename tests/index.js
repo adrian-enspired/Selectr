@@ -334,7 +334,7 @@
             );
 
             singleSelectr.__done__();
-            multiSelectr.__done__();
+//            multiSelectr.__done__();
         });
 
         // @todo tests for other constructor options/settings:

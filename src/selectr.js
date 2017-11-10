@@ -1149,13 +1149,11 @@
         }
 
         // Non-native dropdown
-        this.selected.addEventListener("click", function(e) {
+        this.selected.addEventListener("click", function(e) {console.log('toggle', e);
 
             if (!that.disabled) {
                 that.toggle();
             }
-
-            e.preventDefault();
         });
 
         if ( this.config.nativeKeyboard ) {
@@ -1229,9 +1227,12 @@
         }
 
         // Remove tag
-        this.label.addEventListener("click", function(e) {
+        this.label.addEventListener("click", function(e) {console.log('remove', e);
             if (util.hasClass(e.target, "selectr-tag-remove")) {
                 that.deselect(e.target.parentNode.idx);
+//@todo
+            e.preventDefault();
+            e.stopPropagation();
             }
         });
 
@@ -1243,6 +1244,7 @@
         // Prevent text selection
         this.tree.addEventListener("mousedown", function(e) {
             e.preventDefault();
+            e.stopPropagation();
         });
 
         // Select / deselect items
@@ -1266,6 +1268,9 @@
                     }
                 }
             }
+
+            e.preventDefault();
+            e.stopPropagation();
         });
 
         // Mouseover list items
